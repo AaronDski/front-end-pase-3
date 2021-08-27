@@ -1,9 +1,10 @@
-// import logo from './logo.svg';
 import "./App.css";
 import { useEffect, useState } from "react";
 import PartCard from "./PartCard.js";
 import Cart from "./Cart";
-import { BrowserRouter, NavLink, Switch, Route } from "react-router-dom";
+import NavBar from "./NavBar.js";
+import Home from "./Home";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 function App() {
   const [cartArr, setCartArr] = useState([]);
@@ -53,14 +54,18 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundImage: "url./carback.webp" }}>
       <BrowserRouter>
+        <NavBar />
         <Switch>
           <Route path="/parts_list">
             <PartCard addToCart={handleAddToCart} partArr={partArr} />
           </Route>
           <Route path="/cart">
             <Cart cartArr={cartArr} onDelete={handleDeleteClick} />
+          </Route>
+          <Route path="/home">
+            <Home />
           </Route>
         </Switch>
       </BrowserRouter>
